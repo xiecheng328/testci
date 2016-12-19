@@ -27,8 +27,8 @@ class User extends CI_Controller {
             ));
 //            setCookie("userid", $row->id);
 
-            $this -> user_list();
-//            redirect("user/user_list");
+//            $this -> user_list();
+            redirect("user/user_list");
         }else{
             echo "登录失败";
         }
@@ -59,6 +59,7 @@ class User extends CI_Controller {
     public function user_list(){
         $this->load->model('user_model');
         $users = $this -> user_model -> get_all();
+
         $this->load->view('user_list', array(
             "users" => $users
         ));

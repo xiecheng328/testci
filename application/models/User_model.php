@@ -8,7 +8,19 @@ class User_model extends CI_Model {
     }
 
     public function get_all(){
-        return $this -> db ->get('user') -> result();
+//        return $this -> db ->get('user') -> result();
+
+        /*
+            select user.*, course.coursename
+            from user left join course
+            on user.id=course.user_id;
+        */
+
+        $this->db->select('user.*, course.coursename');
+        $this->db->from('user');
+        $this->db->join('course', 'user.id=course.user_id', 'left');
+        $this->db->order_by('user.id', 'asc');
+        return $this->db->get()->result();
     }
 
 
