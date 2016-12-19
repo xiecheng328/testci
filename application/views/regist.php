@@ -17,14 +17,17 @@
     <script>
         var $un = $("input[name=username]");
         var $tip = $("#tip");
+        var $reg = $("input[type=submit]");
         $un.on("blur", function(){
             $.get("user/check_username", {
                 "username" : $un.val().trim()
             }, function(res){
                 if(res == "no"){
                     $tip.html("用户名已存在");
+                    $reg.attr("disabled", true);
                 }else{
                     $tip.html("用户名可以使用");
+                    $reg.removeAttr("disabled");
                 }
             }, "text");
         });
